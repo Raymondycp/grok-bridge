@@ -1,4 +1,7 @@
-![Grok Bridge: the herdr-bridge routine of a Grok Bot agent](docs/images/routine-panel.png)
+<div align="center">
+  <img src="docs/images/routine-panel.png" alt="Grok Bridge: the herdr-bridge routine of a Grok Bot agent" />
+</div>
+
 
 # Grok Bridge
 
