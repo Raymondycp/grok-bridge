@@ -1,0 +1,6 @@
+{
+  "grok_webhook_url": "https://<the routine's Webhook URL>",
+  "grok_webhook_key": "<the routine's Webhook key>",
+  "agent_name": "grok-herdr",
+  "default_to": "claude"
+}

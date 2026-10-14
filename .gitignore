@@ -1,0 +1,11 @@
+# the mailbox and run files of one installation: never part of the shared plugin
+log.jsonl
+MEMORY.md
+team.md
+agents.json
+status.json
+delivery.log
+plugin/state.json
+config.json
+# built share packages
+dist/

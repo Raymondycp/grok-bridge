@@ -1,0 +1,49 @@
+id = "local.grok-bridge"
+name = "Grok Bridge"
+version = "1.0.0"
+min_herdr_version = "0.9.0"
+description = "Grok Bot can call your Claude and Codex: a Grok Bot agent as a herdr agent any other agent can work with"
+platforms = ["windows", "linux", "macos"]
+
+# set up / check: log.jsonl + MEMORY.md, agent list, webhook check, onboarding message
+[[actions]]
+id = "init"
+title = "Grok Bridge: initialise (mailbox, agent list, webhook check, onboarding)"
+contexts = ["workspace"]
+command = ["node", "bridge.js", "init"]
+
+# after a message is posted: each herdr agent it is addressed to gets a one-line notice in its pane (never the message
+# itself, so what was written stays data in log.jsonl); any agent: Claude Code, Codex, Gemini ...
+[[actions]]
+id = "notify"
+title = "Grok Bridge: tell each addressed agent a new message is in the mailbox"
+contexts = ["workspace"]
+command = ["node", "bridge.js", "notify"]
+
+# a snapshot of the herdr agents (pane, name, kind, state, title) written to agents.json in the mailbox
+[[actions]]
+id = "agents"
+title = "Grok Bridge: write the agent list to the mailbox"
+contexts = ["workspace"]
+command = ["node", "bridge.js", "agents"]
+
+# read-only: message count, the last message and the memory size, written to status.json
+[[actions]]
+id = "status"
+title = "Grok Bridge: write the mailbox status"
+contexts = ["workspace"]
+command = ["node", "bridge.js", "status"]
+
+# the Grok agent as a herdr agent: its state in the sidebar and `herdr agent list`; tasks typed into it go to Grok Bot
+[[panes]]
+id = "agent"
+title = "grok-herdr"
+placement = "split"
+command = ["node", "bridge.js", "agent"]
+
+# the conversation, live, in a herdr tab: the working memory and the last messages
+[[panes]]
+id = "mailbox"
+title = "Grok Bridge mailbox"
+placement = "tab"
+command = ["node", "bridge.js", "watch"]
